@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Entity;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using static Project.Models;
+using System.Web.Http.Description;
+
 
 namespace Project.Controllers
 {
@@ -40,7 +43,7 @@ namespace Project.Controllers
         [BasicAuthentication]
         public IHttpActionResult GetOrder(int id1, int id2)
         {
-            if (GetBranch(id2)==false)
+            if (GetBranch(id2) == false)
             {
                 return Ok(new ErrModel { _Code = 13, _Message = "Problem with branch id" });
             }
@@ -75,7 +78,7 @@ namespace Project.Controllers
         }
 
         private bool GetBranch(int id2)
-        { 
+        {
             Branch branch = db.Branchs.Find(id2);
 
             if (branch == null)
@@ -85,6 +88,35 @@ namespace Project.Controllers
             return true;
         }
 
+
+        [ResponseType(typeof(OrderProductModel))]
+        public IHttpActionResult PostFurniture(OrderProductModel op)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            int branch_ = db.Branchs.Where(k => k.Name == op._BranchName).Select(k => k.Id).FirstOrDefault();
+
+            var order = new Order { BranchId = branch_ };
+
+            //int some_ = db.Orders.Where(j => j.BranchId == order.BranchId).Select(j => j.Id).LastOrDefault();
+
+            var order_products = op._Products.Select(i => new OrderProduct
+            {
+                BranchId = branch_,
+                Order = order,//db.Orders.Where(j => j.BranchId == order.BranchId).Select(j => j.Id).LastOrDefault(),
+                Count = i._Count,
+                ProductId = db.Products.Where(k => k.Name == i._Name).Select(k => k.Id).FirstOrDefault()
+            });
+
+            db.Orders.Add(order);
+            db.OrderProducts.AddRange(order_products);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = op }, op);
+
+        }
     }
 }
 

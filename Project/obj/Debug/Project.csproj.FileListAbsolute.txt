@@ -87,3 +87,11 @@ C:\Users\santr\OneDrive\Рабочий стол\Project\Project\obj\Debug\Projec
 C:\Users\santr\OneDrive\Рабочий стол\Project\Project\obj\Debug\Project.Migrations.First.resources
 C:\Users\santr\OneDrive\Рабочий стол\Project\Project\obj\Debug\Project.csproj.GenerateResource.cache
 C:\Users\santr\OneDrive\Рабочий стол\Project\Project\obj\Debug\Project.Migrations.Second.resources
+C:\Users\santr\OneDrive\Рабочий стол\Project\Project\obj\Debug\Project.Migrations.Four.resources
+C:\Users\santr\OneDrive\Рабочий стол\Project\Project\obj\Debug\Project.Migrations.Four1.resources
+C:\Users\santr\OneDrive\Рабочий стол\Project\Project\obj\Debug\Project.Migrations.Some.resources
+C:\Users\santr\OneDrive\Рабочий стол\Project\Project\bin\Entity.dll
+C:\Users\santr\OneDrive\Рабочий стол\Project\Project\bin\Models.dll
+C:\Users\santr\OneDrive\Рабочий стол\Project\Project\bin\Entity.pdb
+C:\Users\santr\OneDrive\Рабочий стол\Project\Project\bin\Entity.dll.config
+C:\Users\santr\OneDrive\Рабочий стол\Project\Project\bin\Models.pdb
