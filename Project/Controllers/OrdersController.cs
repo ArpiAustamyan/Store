@@ -96,16 +96,14 @@ namespace Project.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             int branch_ = db.Branchs.Where(k => k.Name == op._BranchName).Select(k => k.Id).FirstOrDefault();
-
             var order = new Order { BranchId = branch_ };
-
-            //int some_ = db.Orders.Where(j => j.BranchId == order.BranchId).Select(j => j.Id).LastOrDefault();
 
             var order_products = op._Products.Select(i => new OrderProduct
             {
                 BranchId = branch_,
-                Order = order,//db.Orders.Where(j => j.BranchId == order.BranchId).Select(j => j.Id).LastOrDefault(),
+                Order = order,
                 Count = i._Count,
                 ProductId = db.Products.Where(k => k.Name == i._Name).Select(k => k.Id).FirstOrDefault()
             });
